@@ -1,0 +1,37 @@
+# In order to keep the build context clean and secure,
+# we use this dockerignore file as a useful allowlist.
+# <https://docs.docker.com/engine/reference/builder/#dockerignore-file>
+
+# Exclude: everything
+*
+
+# Include: application files
+!estudio/accounts
+!estudio/estudio
+!estudio/cucina
+!estudio/data_store
+!estudio/playground
+!estudio/projects
+!estudio/recipes
+!estudio/static
+!estudio/staticfiles
+!estudio/manage.py
+!estudio/run.sh
+
+# Include: build files
+!pyproject.toml
+!poetry.lock
+!package.json
+!package-lock.json
+!webpack.config.js
+!postcss.config.js
+!tailwind.config.js
+!tailwind.colors.js
+!tailwind.fontSize.js
+!entrypoint.sh
+
+# Include: misc files
+!docs/openapi.json
+
+# Exclude: misc files
+estudio/estudio/local_settings.py

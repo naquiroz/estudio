@@ -1,0 +1,40 @@
+version: '3.7'
+services:
+  db:
+    image: postgres:12.6
+    volumes:
+      - data:/var/lib/postgresql/data
+    environment:
+      # Authorize insecure connections;
+      # used only in local development.
+      POSTGRES_HOST_AUTH_METHOD: trust
+      # Reference: <https://www.postgresql.org/docs/12/auth-trust.html>
+    networks:
+      - backend
+
+  web:
+    build:
+      context: .
+      dockerfile: ./docker/development/Dockerfile
+    init: true
+    volumes:
+      - .:/app
+    environment:
+      PORT: 8000
+      DJANGO_ENV: DEVELOPMENT
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - backend
+    
+
+
+volumes:
+  data:
+    driver: local
+
+
+networks:
+  backend:
